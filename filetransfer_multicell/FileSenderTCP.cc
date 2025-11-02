@@ -1,0 +1,141 @@
+#include "FileSenderTCP.h"
+#include <inet/common/TimeTag_m.h>
+#include <inet/common/packet/chunk/ByteCountChunk.h>     // correct header for INET 4.5
+
+Define_Module(FileSenderTCP);
+using namespace inet;
+using namespace omnetpp;
+
+FileSenderTCP::~FileSenderTCP()
+{
+    cancelAndDelete(selfMsg);
+}
+
+void FileSenderTCP::initialize(int stage)
+{
+    cSimpleModule::initialize(stage);
+
+    if (stage == INITSTAGE_LOCAL)
+    {
+        selfMsg = new cMessage("sendTimer");
+        localPort   = par("localPort");
+        destPort    = par("destPort");
+        payloadSize = par("payloadSize");
+        totalFrames = par("nFrames");
+    }
+    else if (stage == INITSTAGE_APPLICATION_LAYER)
+    {
+        const char *destAddrStr = par("destAddress");
+        destAddress = L3AddressResolver().resolve(destAddrStr);
+
+        socket.setOutputGate(gate("socketOut"));
+        socket.bind(localPort);
+        socket.setCallback(this);
+        socket.connect(destAddress, destPort);
+
+        // NOTE: do NOT schedule the timer here.
+        // We start sending after TCP handshake in socketEstablished().
+    }
+}
+
+void FileSenderTCP::handleMessage(cMessage *msg)
+{
+    if (msg->isSelfMessage())
+    {
+        if (socket.isOpen())
+        {
+            if (currentFrame < totalFrames)
+            {
+                sendPacket();
+                simtime_t interval = par("samplingTime");
+                scheduleAt(simTime() + interval, selfMsg);
+            }
+            else
+            {
+                cancelAndDelete(selfMsg);
+                selfMsg = nullptr;
+                socket.close();
+            }
+        }
+        else
+        {
+            // not connected yet; retry shortly
+            scheduleAt(simTime() + 0.05, selfMsg);
+        }
+    }
+    else
+    {
+        socket.processMessage(msg);
+    }
+}
+
+void FileSenderTCP::sendPacket()
+{
+    // Build a payload as raw bytes for TCP stream semantics
+    auto packet = new Packet("FileTCP");
+    auto chunk  = makeShared<ByteCountChunk>(B(payloadSize));
+    packet->insertAtBack(chunk);
+
+    EV_INFO << "TCP send frame " << currentFrame
+            << " (" << payloadSize << "B) at " << simTime() << endl;
+
+    ++currentFrame;
+    socket.send(packet);
+}
+
+/*** TCP callbacks ***/
+
+void FileSenderTCP::socketAvailable(TcpSocket * /*socket*/, TcpAvailableInfo *availableInfo)
+{
+    // Not used on the active side (client). Safe to ignore.
+    delete availableInfo;
+}
+
+void FileSenderTCP::socketEstablished(TcpSocket * /*socket*/)
+{
+    EV_INFO << "TCP connection established (sender) at " << simTime() << "\n";
+
+    // Respect configured startTime; schedule first send now that TCP is up
+    simtime_t startDelay = par("startTime");
+    if (selfMsg && !selfMsg->isScheduled())
+        scheduleAt(simTime() + startDelay, selfMsg);
+}
+
+void FileSenderTCP::socketDataArrived(TcpSocket * /*socket*/, Packet *msg, bool /*urgent*/)
+{
+    // Sender does not expect data
+    delete msg;
+}
+
+void FileSenderTCP::socketPeerClosed(TcpSocket *socket)
+{
+    EV_INFO << "Peer closed TCP connection (sender)\n";
+    socket->close();
+}
+
+void FileSenderTCP::socketClosed(TcpSocket * /*socket*/)
+{
+    EV_INFO << "Socket closed (sender)\n";
+}
+
+void FileSenderTCP::socketFailure(TcpSocket * /*socket*/, int code)
+{
+    EV_WARN << "TCP connection FAILED at " << simTime() << ", code=" << code << endl;
+}
+
+void FileSenderTCP::socketStatusArrived(TcpSocket * /*socket*/, TcpStatusInfo *status)
+{
+    // Not needed for this app
+    delete status;
+}
+
+void FileSenderTCP::socketDeleted(TcpSocket * /*socket*/)
+{
+    EV_INFO << "TCP socket deleted (sender)\n";
+}
+
+/*** Finish ***/
+void FileSenderTCP::finish()
+{
+    recordScalar("Total Frames Sent", currentFrame);
+}

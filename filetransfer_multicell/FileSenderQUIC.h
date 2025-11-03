@@ -10,6 +10,7 @@
 
 using namespace inet;
 
+// file sender class for QUIC protocol
 class FileSenderQUIC : public omnetpp::cSimpleModule
 {
   private:

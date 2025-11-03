@@ -12,6 +12,7 @@
 
 using namespace inet;
 
+// file sender class for UDP protocol
 class FileSenderUDP : public omnetpp::cSimpleModule
 {
     inet::UdpSocket _socket;

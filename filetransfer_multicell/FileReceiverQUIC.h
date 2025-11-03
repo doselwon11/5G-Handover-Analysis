@@ -16,6 +16,7 @@
 using namespace inet;
 using namespace omnetpp;
 
+// file receiver class for QUIC protocol
 class FileReceiverQUIC : public cSimpleModule
 {
   private:

@@ -2,9 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import glob, os, re
 
-# -------------------------------
 # extract final summary from CSV
-# -------------------------------
 def extract_summary(file):
     with open(file, encoding="utf-8") as f:
         lines = f.readlines()
@@ -13,7 +11,7 @@ def extract_summary(file):
 
     fname = os.path.basename(file).lower()
 
-    # --- detect protocol ---
+    # detect protocol
     if "udp_" in fname:
         data["Protocol"] = "UDP"
     elif "tcp_" in fname:
@@ -33,7 +31,7 @@ def extract_summary(file):
     if run_match:
         data["Payload"] = (int(run_match.group(1)) + 1) * 100
 
-    # --- parse metrics from Final Statistics section ---
+    # parse metrics from Final Statistics section
     for line in lines:
         if "Average Packet Delay" in line:
             nums = re.findall(r"[-+]?\d*\.\d+|\d+", line)
@@ -85,10 +83,10 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 
-# save before showing
+# make a folder called "graphs" & save the graphs before showing
 os.makedirs("graphs", exist_ok=True)
 plt.savefig(os.path.join("graphs", "delay_vs_ues.png"), dpi=300)
-plt.show()
+plt.show() # finally show the graphs
 
 # -------------------------------
 # Graph 2 – Throughput vs Payload Size
@@ -103,11 +101,11 @@ plt.ylabel("Throughput (Mbps)")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.savefig(os.path.join("graphs", "throughput_vs_payload.png"), dpi=300)
+plt.savefig(os.path.join("graphs", "throughput_vs_payload.png"), dpi=300) # add the graph to the folder
 plt.show()
 
 # -------------------------------
-# (Optional) Graph 3 – Packet Loss Ratio vs Number of UEs
+# Graph 3 – Packet Loss Ratio vs Number of UEs
 # -------------------------------
 plt.figure(figsize=(7,5))
 for proto in ["UDP", "TCP", "QUIC"]:
@@ -119,5 +117,5 @@ plt.ylabel("Loss Ratio (%)")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.savefig(os.path.join("graphs", "loss_vs_ues.png"), dpi=300)
+plt.savefig(os.path.join("graphs", "loss_vs_ues.png"), dpi=300) # add the graph to the folder
 plt.show()

@@ -8,6 +8,7 @@ using namespace inet;
 using namespace omnetpp;
 using namespace std;
 
+// initialising file receiver for TCP protocol
 void FileReceiverTCP::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
@@ -143,7 +144,7 @@ void FileReceiverTCP::socketFailure(TcpSocket *socket, int code)
     EV_WARN << "TCP failure code " << code << endl;
 }
 
-// required callbacks for ICallback interface
+// required call backs for ICallback interface
 void FileReceiverTCP::socketPeerClosed(TcpSocket *socket)
 {
     EV_INFO << "Peer closed TCP connection\n";
@@ -170,7 +171,7 @@ void FileReceiverTCP::finish()
 
     SimTime total_time = simTime() - getSimulation()->getWarmupPeriod();
 
-    // --- Calculate averages ---
+    // --- calculate averages ---
     if (_rx_count > 0)
     {
         avg_delay = _time_delay_sum.dbl() / _rx_count;
@@ -185,11 +186,11 @@ void FileReceiverTCP::finish()
         throughput = (_rx_count * _last_payload_size * 8.0) / total_time.dbl();
     }
 
-    // --- Packet loss ratio ---
+    // --- packet loss ratio ---
     if (_tx_seq_id > 0)
         loss_ratio = (double)_loss_seq_id_cnt / (double)(_tx_seq_id + 1);
 
-    // --- Write final stats ---
+    // --- write final statistics ---
     if (_result_csv.is_open())
     {
         if (_temp_str_counter > 0)

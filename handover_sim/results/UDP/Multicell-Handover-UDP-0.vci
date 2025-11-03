@@ -1,9 +1,9 @@
-file 3467482 1762061453                                         
+file 3467484 1762152137                                         
 version 3
-run Multicell-Handover-UDP-99-20251102-14:29:17-9640
+run Multicell-Handover-UDP-99-20251103-15:40:36-30672
 attr configname Multicell-Handover-UDP
-attr datetime 20251102-14:29:17
-attr datetimef 20251102-142917
+attr datetime 20251103-15:40:36
+attr datetimef 20251103-154036
 attr experiment Multicell-Handover-UDP
 attr inifile omnetpp.ini
 attr iterationvars "$numUEs=100, $ps=1000, $u=0, $numRbs=50"
@@ -11,7 +11,7 @@ attr iterationvarsd numUEs=100/ps=1000/u=0/numRbs=50
 attr iterationvarsf numUEs=100,ps=1000,u=0,numRbs=50-
 attr measurement "$numUEs=100, $ps=1000, $u=0, $numRbs=50"
 attr network simu5g.simulations.nr.handover_sim.MultiCell_Standalone
-attr processid 9640
+attr processid 30672
 attr repetition 0
 attr replication #0
 attr resultdir results

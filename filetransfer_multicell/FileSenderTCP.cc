@@ -11,6 +11,7 @@ FileSenderTCP::~FileSenderTCP()
     cancelAndDelete(selfMsg);
 }
 
+// initialise file sender for TCP protocol
 void FileSenderTCP::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
@@ -71,7 +72,7 @@ void FileSenderTCP::handleMessage(cMessage *msg)
 
 void FileSenderTCP::sendPacket()
 {
-    // Build a payload as raw bytes for TCP stream semantics
+    // build a payload as raw bytes for TCP stream semantics
     auto packet = new Packet("FileTCP");
     auto chunk  = makeShared<ByteCountChunk>(B(payloadSize));
     packet->insertAtBack(chunk);
@@ -83,11 +84,11 @@ void FileSenderTCP::sendPacket()
     socket.send(packet);
 }
 
-/*** TCP callbacks ***/
+/*** TCP call backs ***/
 
 void FileSenderTCP::socketAvailable(TcpSocket * /*socket*/, TcpAvailableInfo *availableInfo)
 {
-    // Not used on the active side (client). Safe to ignore.
+    // not used on the active side (client); safe to ignore.
     delete availableInfo;
 }
 
@@ -95,7 +96,7 @@ void FileSenderTCP::socketEstablished(TcpSocket * /*socket*/)
 {
     EV_INFO << "TCP connection established (sender) at " << simTime() << "\n";
 
-    // Respect configured startTime; schedule first send now that TCP is up
+    // respect configured startTime; schedule first send now that TCP is up
     simtime_t startDelay = par("startTime");
     if (selfMsg && !selfMsg->isScheduled())
         scheduleAt(simTime() + startDelay, selfMsg);
@@ -103,7 +104,7 @@ void FileSenderTCP::socketEstablished(TcpSocket * /*socket*/)
 
 void FileSenderTCP::socketDataArrived(TcpSocket * /*socket*/, Packet *msg, bool /*urgent*/)
 {
-    // Sender does not expect data
+    // sender does not expect data
     delete msg;
 }
 
@@ -125,7 +126,7 @@ void FileSenderTCP::socketFailure(TcpSocket * /*socket*/, int code)
 
 void FileSenderTCP::socketStatusArrived(TcpSocket * /*socket*/, TcpStatusInfo *status)
 {
-    // Not needed for this app
+    // not needed for this app
     delete status;
 }
 
@@ -134,7 +135,7 @@ void FileSenderTCP::socketDeleted(TcpSocket * /*socket*/)
     EV_INFO << "TCP socket deleted (sender)\n";
 }
 
-/*** Finish ***/
+/*** finish ***/
 void FileSenderTCP::finish()
 {
     recordScalar("Total Frames Sent", currentFrame);

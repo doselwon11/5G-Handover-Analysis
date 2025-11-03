@@ -17,11 +17,12 @@ FileSenderUDP::~FileSenderUDP()
     cancelAndDelete(_self_msg);
 }
 
+// initialise file sender for UDP protocol
 void FileSenderUDP::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
 
-    if (stage == INITSTAGE_LOCAL) // Initialize
+    if (stage == INITSTAGE_LOCAL) // initialisation
     {
         _self_msg = new cMessage("sendTimer");
         _local_port = par("localPort");
@@ -68,7 +69,6 @@ void FileSenderUDP::sendPacket()
     Packet* packet = new Packet("File");
     auto fileData = makeShared<FilePacket>();
     
-    //Modify here to send certain amount of data
     fileData->setNframes(_total_frames);
     fileData->setIDframe(_current_frame++);
     fileData->setPayloadTimestamp(simTime());

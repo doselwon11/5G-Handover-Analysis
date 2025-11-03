@@ -6,6 +6,7 @@ using namespace inet;
 using namespace omnetpp;
 using namespace std;
 
+// initialising file receiver for QUIC protocol
 void FileReceiverQUIC::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
@@ -20,7 +21,7 @@ void FileReceiverQUIC::initialize(int stage)
         tempStr.clear();
         tempStrCounter = 0;
 
-        // Create CSV file (UTF-8 with BOM for Korean text support)
+        // create CSV file (UTF-8 with BOM)
         stringstream fileName;
         int ueIndex = getParentModule()->getIndex();
         std::ostringstream ueStr;
@@ -49,6 +50,7 @@ void FileReceiverQUIC::initialize(int stage)
     }
 }
 
+// handle incoming messages
 void FileReceiverQUIC::handleMessage(cMessage *msg)
 {
     if (msg->isSelfMessage())
@@ -131,8 +133,10 @@ void FileReceiverQUIC::handleMessage(cMessage *msg)
     delete msg;
 }
 
+// finish the process of receiving files
 void FileReceiverQUIC::finish()
 {
+    // important metrics for final statistics
     double avg_delay = 0.0;
     double avg_gap = 0.0;
     double throughput = 0.0;
@@ -157,7 +161,7 @@ void FileReceiverQUIC::finish()
     if (txSeqId > 0)
         loss_ratio = (double)lossSeqCnt / (double)(txSeqId + 1);
 
-    // --- write results ---
+    // --- write results to CSV files ---
     if (resultCsv.is_open())
     {
         if (tempStrCounter > 0)

@@ -91,9 +91,8 @@ simple FileReceiverTCP like IApp
         output socketOut;
 }
 
-// ================================================================
-//  QUIC sender and receiver
-// ================================================================
+
+//  QUIC sender
 simple FileSenderQUIC like IApp
 {
     parameters:
@@ -111,6 +110,7 @@ simple FileSenderQUIC like IApp
         output socketOut;
 }
 
+// QUIC receiver
 simple FileReceiverQUIC like IApp
 {
     parameters:

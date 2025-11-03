@@ -16,6 +16,7 @@
 
 #define WINDOW_SIZE 0.1
 
+// file receiver class for UDP protocol
 class FileReceiverUDP : public omnetpp::cSimpleModule
 {
     inet::UdpSocket socket;

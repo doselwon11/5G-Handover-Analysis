@@ -11,6 +11,7 @@
 
 using namespace inet;
 
+// file sender class for TCP protocol
 class FileSenderTCP : public omnetpp::cSimpleModule, public TcpSocket::ICallback
 {
   private:
@@ -31,7 +32,7 @@ class FileSenderTCP : public omnetpp::cSimpleModule, public TcpSocket::ICallback
     void handleMessage(omnetpp::cMessage *msg) override;
     void finish() override;
 
-    // TCP callbacks
+    // TCP call backs
     virtual void socketAvailable(inet::TcpSocket *socket, inet::TcpAvailableInfo *availableInfo) override;
     virtual void socketEstablished(inet::TcpSocket *socket) override;
     virtual void socketDataArrived(inet::TcpSocket *socket, inet::Packet *msg, bool urgent) override;

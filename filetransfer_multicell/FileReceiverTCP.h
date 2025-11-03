@@ -18,6 +18,7 @@
 
 #define WINDOW_SIZE 0.1
 
+// file receiver class for TCP protocol
 class FileReceiverTCP : public omnetpp::cSimpleModule, public inet::TcpSocket::ICallback
 {
   private:
@@ -48,15 +49,15 @@ class FileReceiverTCP : public omnetpp::cSimpleModule, public inet::TcpSocket::I
       virtual void handleMessage(omnetpp::cMessage *msg) override;
       virtual void finish() override;
 
-      // TCP callbacks
+      // TCP call backs
       virtual void socketAvailable(inet::TcpSocket *socket, inet::TcpAvailableInfo *availableInfo) override;
       virtual void socketEstablished(inet::TcpSocket *socket) override;
       virtual void socketDataArrived(inet::TcpSocket *socket, inet::Packet *pk, bool urgent) override;
-      virtual void socketPeerClosed(inet::TcpSocket *socket) override;                    // ✅ added
+      virtual void socketPeerClosed(inet::TcpSocket *socket) override;
       virtual void socketClosed(inet::TcpSocket *socket) override;
       virtual void socketFailure(inet::TcpSocket *socket, int code) override;
-      virtual void socketStatusArrived(inet::TcpSocket *socket, inet::TcpStatusInfo *status) override;  // ✅ added
-      virtual void socketDeleted(inet::TcpSocket *socket) override;                      // ✅ added
+      virtual void socketStatusArrived(inet::TcpSocket *socket, inet::TcpStatusInfo *status) override;
+      virtual void socketDeleted(inet::TcpSocket *socket) override;
 };
 
 #endif

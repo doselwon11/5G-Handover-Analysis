@@ -1,9 +1,9 @@
-file 3474115 1762152684                                         
+file 3474115 1762406297                                         
 version 3
-run Multicell-Handover-QUIC-99-20251103-15:49:38-27976
+run Multicell-Handover-QUIC-99-20251106-14:17:08-22300
 attr configname Multicell-Handover-QUIC
-attr datetime 20251103-15:49:38
-attr datetimef 20251103-154938
+attr datetime 20251106-14:17:08
+attr datetimef 20251106-141708
 attr experiment Multicell-Handover-QUIC
 attr inifile omnetpp.ini
 attr iterationvars "$numUEs=100, $ps=1000, $u=0, $numRbs=50"
@@ -11,7 +11,7 @@ attr iterationvarsd numUEs=100/ps=1000/u=0/numRbs=50
 attr iterationvarsf numUEs=100,ps=1000,u=0,numRbs=50-
 attr measurement "$numUEs=100, $ps=1000, $u=0, $numRbs=50"
 attr network simu5g.simulations.nr.handover_sim.MultiCell_Standalone
-attr processid 27976
+attr processid 22300
 attr repetition 0
 attr replication #0
 attr resultdir results

@@ -1,6 +1,6 @@
 #include "FileSenderTCP.h"
 #include <inet/common/TimeTag_m.h>
-#include <inet/common/packet/chunk/ByteCountChunk.h>     // correct header for INET 4.5
+#include <inet/common/packet/chunk/ByteCountChunk.h>
 
 Define_Module(FileSenderTCP);
 using namespace inet;
@@ -77,7 +77,7 @@ void FileSenderTCP::sendPacket()
     auto chunk  = makeShared<ByteCountChunk>(B(payloadSize));
     packet->insertAtBack(chunk);
 
-    EV_INFO << "TCP send frame " << currentFrame
+    EV_INFO << "TCP/IP send frame " << currentFrame
             << " (" << payloadSize << "B) at " << simTime() << endl;
 
     ++currentFrame;
@@ -94,7 +94,7 @@ void FileSenderTCP::socketAvailable(TcpSocket * /*socket*/, TcpAvailableInfo *av
 
 void FileSenderTCP::socketEstablished(TcpSocket * /*socket*/)
 {
-    EV_INFO << "TCP connection established (sender) at " << simTime() << "\n";
+    EV_INFO << "TCP/IP connection established (sender) at " << simTime() << "\n";
 
     // respect configured startTime; schedule first send now that TCP is up
     simtime_t startDelay = par("startTime");
@@ -110,7 +110,7 @@ void FileSenderTCP::socketDataArrived(TcpSocket * /*socket*/, Packet *msg, bool 
 
 void FileSenderTCP::socketPeerClosed(TcpSocket *socket)
 {
-    EV_INFO << "Peer closed TCP connection (sender)\n";
+    EV_INFO << "Peer closed TCP/IP connection (sender)\n";
     socket->close();
 }
 
@@ -121,7 +121,7 @@ void FileSenderTCP::socketClosed(TcpSocket * /*socket*/)
 
 void FileSenderTCP::socketFailure(TcpSocket * /*socket*/, int code)
 {
-    EV_WARN << "TCP connection FAILED at " << simTime() << ", code=" << code << endl;
+    EV_WARN << "TCP/IP connection FAILED at " << simTime() << ", code=" << code << endl;
 }
 
 void FileSenderTCP::socketStatusArrived(TcpSocket * /*socket*/, TcpStatusInfo *status)
@@ -132,7 +132,7 @@ void FileSenderTCP::socketStatusArrived(TcpSocket * /*socket*/, TcpStatusInfo *s
 
 void FileSenderTCP::socketDeleted(TcpSocket * /*socket*/)
 {
-    EV_INFO << "TCP socket deleted (sender)\n";
+    EV_INFO << "TCP/IP socket deleted (sender)\n";
 }
 
 /*** finish ***/

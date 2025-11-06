@@ -8,7 +8,7 @@ using namespace inet;
 using namespace omnetpp;
 using namespace std;
 
-// initialising file receiver for TCP protocol
+// initialising file receiver for TCP-IP protocol
 void FileReceiverTCP::initialize(int stage)
 {
     cSimpleModule::initialize(stage);
@@ -31,7 +31,7 @@ void FileReceiverTCP::initialize(int stage)
         std::ostringstream runStr;
         runStr << setw(2) << setfill('0') << runNumber;
         stringstream fileName;
-        fileName << "results/TCP/tcp_run" << runStr.str()
+        fileName << "results/TCPIP/tcp_run" << runStr.str()
                  << "_ue" << ueStr.str() << "_stats.csv";
 
         _result_csv.open(fileName.str(), std::ios::out | std::ios::binary);
@@ -49,7 +49,7 @@ void FileReceiverTCP::initialize(int stage)
         socket.setCallback(this);
         socket.bind(port);
         socket.listen(false);   // ✅ now compiles because protected is exposed
-        EV_INFO << "TCP Receiver listening on port " << port << endl;
+        EV_INFO << "TCP/IP Receiver listening on port " << port << endl;
     }
 
 }
@@ -68,12 +68,12 @@ void FileReceiverTCP::socketAvailable(TcpSocket *listener, TcpAvailableInfo *ava
 
 void FileReceiverTCP::socketEstablished(TcpSocket *socket)
 {
-    EV_INFO << "TCP connection established (receiver) at " << simTime() << endl;
+    EV_INFO << "TCP/IP connection established (receiver) at " << simTime() << endl;
 }
 
 void FileReceiverTCP::socketDataArrived(TcpSocket *socket, Packet *pk, bool urgent)
 {
-    EV_INFO << "TCP data arrived: " << pk->getTotalLength()
+    EV_INFO << "TCP/IP data arrived: " << pk->getTotalLength()
             << " bytes at " << simTime() << endl;
 
     // treat each TCP data arrival as one frame
@@ -136,30 +136,30 @@ void FileReceiverTCP::socketDataArrived(TcpSocket *socket, Packet *pk, bool urge
 
 void FileReceiverTCP::socketClosed(TcpSocket *socket)
 {
-    EV_INFO << "TCP connection closed (receiver) at " << simTime() << endl;
+    EV_INFO << "TCP/IP connection closed (receiver) at " << simTime() << endl;
 }
 
 void FileReceiverTCP::socketFailure(TcpSocket *socket, int code)
 {
-    EV_WARN << "TCP failure code " << code << endl;
+    EV_WARN << "TCP/IP failure code " << code << endl;
 }
 
 // required call backs for ICallback interface
 void FileReceiverTCP::socketPeerClosed(TcpSocket *socket)
 {
-    EV_INFO << "Peer closed TCP connection\n";
+    EV_INFO << "Peer closed TCP-IP connection\n";
     socket->close();
 }
 
 void FileReceiverTCP::socketStatusArrived(TcpSocket *socket, TcpStatusInfo *status)
 {
-    EV_INFO << "TCP status arrived (ignored)\n";
+    EV_INFO << "TCP/IP status arrived (ignored)\n";
     delete status;
 }
 
 void FileReceiverTCP::socketDeleted(TcpSocket *socket)
 {
-    EV_INFO << "TCP socket deleted\n";
+    EV_INFO << "TCP/IP socket deleted\n";
 }
 
 void FileReceiverTCP::finish()

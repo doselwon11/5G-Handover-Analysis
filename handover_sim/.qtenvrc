@@ -1,6 +1,6 @@
 [General]
-last-configname=Multicell-Handover-TCP
-last-runnumber=1
+last-configname=Multicell-Handover-QUIC
+last-runnumber=99
 
 [RunModeProfiles]
 run-playback-speed=100

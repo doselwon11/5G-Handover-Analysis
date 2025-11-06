@@ -1,8 +1,8 @@
 version 3
-run Multicell-Handover-UDP-99-20251103-15:40:36-30672
+run Multicell-Handover-UDP-99-20251106-14:13:15-44708
 attr configname Multicell-Handover-UDP
-attr datetime 20251103-15:40:36
-attr datetimef 20251103-154036
+attr datetime 20251106-14:13:15
+attr datetimef 20251106-141315
 attr experiment Multicell-Handover-UDP
 attr inifile omnetpp.ini
 attr iterationvars "$numUEs=100, $ps=1000, $u=0, $numRbs=50"
@@ -10,7 +10,7 @@ attr iterationvarsd numUEs=100/ps=1000/u=0/numRbs=50
 attr iterationvarsf numUEs=100,ps=1000,u=0,numRbs=50-
 attr measurement "$numUEs=100, $ps=1000, $u=0, $numRbs=50"
 attr network simu5g.simulations.nr.handover_sim.MultiCell_Standalone
-attr processid 30672
+attr processid 44708
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -78777,4 +78777,82 @@ vector 16433 MultiCell_Standalone.gnb1.sctp "HB ACK Received 105:10.0.7.2" ETV
 vector 16434 MultiCell_Standalone.gnb1.sctp "RTT 105:10.0.7.2" ETV
 vector 16435 MultiCell_Standalone.gnb2.sctp "HB ACK Received 109:10.0.7.1" ETV
 vector 16436 MultiCell_Standalone.gnb2.sctp "RTT 109:10.0.7.1" ETV
+vector 16437 MultiCell_Standalone.gnb2.sctp "SendQueue of Association 329" ETV
+vector 16438 MultiCell_Standalone.gnb2.sctp "TSN Sent 329:10.0.7.1" ETV
+vector 16439 MultiCell_Standalone.gnb2.sctp "Outstanding Bytes 329:10.0.7.1" ETV
+vector 16440 MultiCell_Standalone.gnb2.sctp "Outstanding Bytes 328:Total" ETV
+vector 16441 MultiCell_Standalone.gnb2.sctp "Queued Sent Bytes 329:10.0.7.1" ETV
+vector 16442 MultiCell_Standalone.gnb2.sctp "Queued Sent Bytes 328:Total" ETV
+vector 16443 MultiCell_Standalone.gnb1.sctp "SendQueue of Association 330" ETV
+vector 16444 MultiCell_Standalone.gnb1.sctp "TSN Sent 330:10.0.7.2" ETV
+vector 16445 MultiCell_Standalone.gnb1.sctp "Outstanding Bytes 330:10.0.7.2" ETV
+vector 16446 MultiCell_Standalone.gnb1.sctp "Outstanding Bytes 327:Total" ETV
+vector 16447 MultiCell_Standalone.gnb1.sctp "Queued Sent Bytes 330:10.0.7.2" ETV
+vector 16448 MultiCell_Standalone.gnb1.sctp "Queued Sent Bytes 327:Total" ETV
+vector 16449 MultiCell_Standalone.gnb1.sctp "TSN Received 105:10.0.7.2" ETV
+vector 16450 MultiCell_Standalone.gnb1.sctp "Stream 0 Throughput" ETV
+vector 16451 MultiCell_Standalone.gnb1.sctp "Queued Received Bytes 105:Total" ETV
+vector 16452 MultiCell_Standalone.gnb1.sctp "Advertised Receiver Window 105" ETV
+vector 16453 MultiCell_Standalone.gnb1.sctp "Number of Total Gap Blocks Stored 105" ETV
+vector 16454 MultiCell_Standalone.gnb1.sctp "Number of Revokable Gap Blocks Stored 105" ETV
+vector 16455 MultiCell_Standalone.gnb1.sctp "Number of Non-Revokable Gap Blocks Stored 105" ETV
+vector 16456 MultiCell_Standalone.gnb1.sctp "Number of Duplicate TSNs Stored 105" ETV
+vector 16457 MultiCell_Standalone.gnb1.sctp "Length of SACK Sent 105" ETV
+vector 16458 MultiCell_Standalone.gnb1.sctp "Number of Revokable Gap Blocks Sent 105" ETV
+vector 16459 MultiCell_Standalone.gnb1.sctp "Number of Non-Revokable Gap Blocks Sent 105" ETV
+vector 16460 MultiCell_Standalone.gnb1.sctp "Number of Duplicate TSNs Sent 105" ETV
+vector 16461 MultiCell_Standalone.gnb2.sctp "TSN Received 109:10.0.7.1" ETV
+vector 16462 MultiCell_Standalone.gnb2.sctp "Stream 0 Throughput" ETV
+vector 16463 MultiCell_Standalone.gnb2.sctp "Queued Received Bytes 109:Total" ETV
+vector 16464 MultiCell_Standalone.gnb2.sctp "Advertised Receiver Window 109" ETV
+vector 16465 MultiCell_Standalone.gnb2.sctp "Number of Total Gap Blocks Stored 109" ETV
+vector 16466 MultiCell_Standalone.gnb2.sctp "Number of Revokable Gap Blocks Stored 109" ETV
+vector 16467 MultiCell_Standalone.gnb2.sctp "Number of Non-Revokable Gap Blocks Stored 109" ETV
+vector 16468 MultiCell_Standalone.gnb2.sctp "Number of Duplicate TSNs Stored 109" ETV
+vector 16469 MultiCell_Standalone.gnb2.sctp "Length of SACK Sent 109" ETV
+vector 16470 MultiCell_Standalone.gnb2.sctp "Number of Revokable Gap Blocks Sent 109" ETV
+vector 16471 MultiCell_Standalone.gnb2.sctp "Number of Non-Revokable Gap Blocks Sent 109" ETV
+vector 16472 MultiCell_Standalone.gnb2.sctp "Number of Duplicate TSNs Sent 109" ETV
+vector 16473 MultiCell_Standalone.gnb1.sctp "End to End Delay of Association 105" ETV
+vector 16474 MultiCell_Standalone.gnb2.sctp "End to End Delay of Association 109" ETV
+vector 16475 MultiCell_Standalone.gnb1.sctp "Number of Gap Blocks in Last SACK of Association 330" ETV
+vector 16476 MultiCell_Standalone.gnb1.sctp "Number of Revokable Gap Blocks in SACK 327" ETV
+vector 16477 MultiCell_Standalone.gnb1.sctp "Number of Non-Revokable Gap Blocks in SACK 327" ETV
+vector 16478 MultiCell_Standalone.gnb1.sctp "TSN Acked CumAck 330:10.0.7.2" ETV
+vector 16479 MultiCell_Standalone.gnb1.sctp "Number of Gap Acked Chunks in Last SACK 330:10.0.4.2" ETV
+vector 16480 MultiCell_Standalone.gnb1.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 330:10.0.4.2" ETV
+vector 16481 MultiCell_Standalone.gnb1.sctp "Number of Gap Missed Chunks in Last SACK 330:10.0.4.2" ETV
+vector 16482 MultiCell_Standalone.gnb1.sctp "Number of Gap Acked Chunks in Last SACK 330:10.0.6.2" ETV
+vector 16483 MultiCell_Standalone.gnb1.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 330:10.0.6.2" ETV
+vector 16484 MultiCell_Standalone.gnb1.sctp "Number of Gap Missed Chunks in Last SACK 330:10.0.6.2" ETV
+vector 16485 MultiCell_Standalone.gnb1.sctp "Number of Gap Acked Chunks in Last SACK 330:10.0.7.2" ETV
+vector 16486 MultiCell_Standalone.gnb1.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 330:10.0.7.2" ETV
+vector 16487 MultiCell_Standalone.gnb1.sctp "Number of Gap Missed Chunks in Last SACK 330:10.0.7.2" ETV
+vector 16488 MultiCell_Standalone.gnb1.sctp "Number of Gap Acked Chunks in Last SACK 330:10.0.9.1" ETV
+vector 16489 MultiCell_Standalone.gnb1.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 330:10.0.9.1" ETV
+vector 16490 MultiCell_Standalone.gnb1.sctp "Number of Gap Missed Chunks in Last SACK 330:10.0.9.1" ETV
+vector 16491 MultiCell_Standalone.gnb1.sctp "Arwnd in Last SACK 327" ETV
+vector 16492 MultiCell_Standalone.gnb1.sctp "TSN PseudoCumAck 330:10.0.7.2" ETV
+vector 16493 MultiCell_Standalone.gnb1.sctp "TSN RTXPseudoCumAck 330:10.0.7.2" ETV
+vector 16494 MultiCell_Standalone.gnb1.sctp "Partial Bytes Acked 330:10.0.7.2" ETV
+vector 16495 MultiCell_Standalone.gnb2.sctp "Number of Gap Blocks in Last SACK of Association 329" ETV
+vector 16496 MultiCell_Standalone.gnb2.sctp "Number of Revokable Gap Blocks in SACK 328" ETV
+vector 16497 MultiCell_Standalone.gnb2.sctp "Number of Non-Revokable Gap Blocks in SACK 328" ETV
+vector 16498 MultiCell_Standalone.gnb2.sctp "TSN Acked CumAck 329:10.0.7.1" ETV
+vector 16499 MultiCell_Standalone.gnb2.sctp "Number of Gap Acked Chunks in Last SACK 329:10.0.3.2" ETV
+vector 16500 MultiCell_Standalone.gnb2.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 329:10.0.3.2" ETV
+vector 16501 MultiCell_Standalone.gnb2.sctp "Number of Gap Missed Chunks in Last SACK 329:10.0.3.2" ETV
+vector 16502 MultiCell_Standalone.gnb2.sctp "Number of Gap Acked Chunks in Last SACK 329:10.0.6.1" ETV
+vector 16503 MultiCell_Standalone.gnb2.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 329:10.0.6.1" ETV
+vector 16504 MultiCell_Standalone.gnb2.sctp "Number of Gap Missed Chunks in Last SACK 329:10.0.6.1" ETV
+vector 16505 MultiCell_Standalone.gnb2.sctp "Number of Gap Acked Chunks in Last SACK 329:10.0.7.1" ETV
+vector 16506 MultiCell_Standalone.gnb2.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 329:10.0.7.1" ETV
+vector 16507 MultiCell_Standalone.gnb2.sctp "Number of Gap Missed Chunks in Last SACK 329:10.0.7.1" ETV
+vector 16508 MultiCell_Standalone.gnb2.sctp "Number of Gap Acked Chunks in Last SACK 329:10.0.8.1" ETV
+vector 16509 MultiCell_Standalone.gnb2.sctp "Number of Non-Revokable Gap Acked Chunks in Last SACK 329:10.0.8.1" ETV
+vector 16510 MultiCell_Standalone.gnb2.sctp "Number of Gap Missed Chunks in Last SACK 329:10.0.8.1" ETV
+vector 16511 MultiCell_Standalone.gnb2.sctp "Arwnd in Last SACK 328" ETV
+vector 16512 MultiCell_Standalone.gnb2.sctp "TSN PseudoCumAck 329:10.0.7.1" ETV
+vector 16513 MultiCell_Standalone.gnb2.sctp "TSN RTXPseudoCumAck 329:10.0.7.1" ETV
+vector 16514 MultiCell_Standalone.gnb2.sctp "Partial Bytes Acked 329:10.0.7.1" ETV
 

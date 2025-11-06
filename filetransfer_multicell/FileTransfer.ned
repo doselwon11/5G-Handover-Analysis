@@ -61,7 +61,7 @@ simple FileReceiverUDP like IApp
         output socketOut;
 }
 
-// TCP-specific sender
+// TCP/IP-specific sender
 simple FileSenderTCP like IApp
 {
     parameters:
@@ -79,7 +79,7 @@ simple FileSenderTCP like IApp
         output socketOut;
 }
 
-// TCP specific receiver
+// TCP/IP specific receiver
 simple FileReceiverTCP like IApp
 {
     parameters:
@@ -121,3 +121,4 @@ simple FileReceiverQUIC like IApp
         input socketIn;
         output socketOut;
 }
+
